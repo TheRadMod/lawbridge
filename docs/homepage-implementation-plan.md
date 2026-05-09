@@ -145,3 +145,14 @@ correction pass
 - [x] Partner direct contact layout widened to two desktop columns so long phone/email links remain readable.
 - [x] Team page hierarchy revised with partners as the leadership band and associates/supporting roles grouped below.
 - [x] Forums section redesigned as a compact court-and-tribunal matrix with smaller glyph badges and one-line forum descriptions.
+- [x] Partner-led representation fade mask removed after review; original image positioning and overlay gradient restored.
+- [x] Partner accordion refined so only one profile opens and closed cards keep their normal height.
+- [x] Removed matter-intake labels from Practice Areas cards.
+- [x] Homepage partner cards now use cropped portrait assets with expanded profile details and Prateek Dawar listed under Commercial Litigation.
+- [x] Removed the After First Contact intake-process and document-checklist section from the homepage.
+- [x] Open partner cards now keep their original grid shape and reveal the profile copy inside the clicked card.
+- [x] Contact sections now place the general email and collapsible office cities directly under the Lawbridge Partners contact intro, leaving partner-specific routes as the main contact grid.
+- [x] About copy narrowed the firm seat reference to Prayagraj.
+- [x] Partner portrait assets normalized to a consistent crop, including the latest Devaang portrait generated from the new reference photo.
+- [x] Office city controls revised into a compact side-by-side selector with the active address opening across the full row below.
+- [x] Header nav label changed to `Team` and the header logo wordmark shifted slightly lower for more breathing room.
