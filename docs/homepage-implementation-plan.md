@@ -137,4 +137,4 @@ correction pass
 - [x] Contact details changed to expandable city/contact cards.
 - [x] Four-partner corridor image added as a dark silhouette trust band.
 - [x] Hero image transition softened and chamber-led CTAs restored.
-- [ ] Homepage changes committed and pushed.
+- [x] Homepage changes committed and pushed.
