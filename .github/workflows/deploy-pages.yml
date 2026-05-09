@@ -1,0 +1,60 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Build allowlisted site artifact
+        run: |
+          set -euo pipefail
+
+          rm -rf _site
+          mkdir -p _site/assets/partners
+
+          cp index.html _site/index.html
+          cp team.html _site/team.html
+          cp styles.css _site/styles.css
+          cp assets/lawbridge-logo-header.png _site/assets/lawbridge-logo-header.png
+          cp assets/allahabad-high-court-hero.png _site/assets/allahabad-high-court-hero.png
+          cp assets/partners-led-silhouette.png _site/assets/partners-led-silhouette.png
+          cp assets/partners/anuj-srivastava.png _site/assets/partners/anuj-srivastava.png
+          cp assets/partners/devaang-savla.png _site/assets/partners/devaang-savla.png
+          cp assets/partners/prateek-dawar.png _site/assets/partners/prateek-dawar.png
+          cp assets/partners/tanmay-sadh.png _site/assets/partners/tanmay-sadh.png
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
