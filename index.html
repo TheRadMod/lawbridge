@@ -15,8 +15,154 @@
       rel="stylesheet"
     >
     <link rel="stylesheet" href="styles.css">
+    <style>
+      .disclaimer-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: grid;
+        place-items: center;
+        padding: 28px;
+        background:
+          linear-gradient(135deg, rgba(8, 23, 41, 0.94), rgba(15, 34, 62, 0.88)),
+          rgba(8, 23, 41, 0.96);
+      }
+
+      .disclaimer-overlay[hidden] {
+        display: none;
+      }
+
+      .disclaimer-dialog {
+        width: min(920px, 100%);
+        max-height: min(86vh, 820px);
+        overflow: auto;
+        padding: clamp(24px, 4vw, 44px);
+        border: 1px solid rgba(200, 162, 75, 0.36);
+        background: var(--paper);
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+      }
+
+      .disclaimer-dialog h2 {
+        margin-bottom: 16px;
+        color: var(--legal-blue);
+        font-size: clamp(2rem, 5vw, 3.6rem);
+      }
+
+      .disclaimer-dialog p,
+      .disclaimer-dialog li {
+        color: #35424f;
+        font-size: 0.98rem;
+        line-height: 1.65;
+      }
+
+      .disclaimer-dialog p {
+        margin-bottom: 18px;
+      }
+
+      .disclaimer-dialog ol {
+        display: grid;
+        gap: 10px;
+        margin: 0 0 26px;
+        padding-left: 22px;
+      }
+
+      .disclaimer-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: flex-end;
+        padding-top: 20px;
+        border-top: 1px solid rgba(17, 25, 35, 0.12);
+      }
+
+      .disclaimer-actions button {
+        min-height: 46px;
+        padding: 0 22px;
+        border: 1px solid transparent;
+        font: inherit;
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: color 180ms ease, border-color 180ms ease, background 180ms ease, transform 180ms ease;
+      }
+
+      .disclaimer-agree-button {
+        background: linear-gradient(180deg, #d8b75c, var(--brass));
+        color: #111318;
+      }
+
+      .disclaimer-disagree-button {
+        border-color: rgba(15, 34, 62, 0.24);
+        background: transparent;
+        color: var(--legal-blue);
+      }
+
+      .disclaimer-actions button:hover {
+        transform: translateY(-1px);
+      }
+
+      .disclaimer-actions button:focus-visible {
+        outline: 3px solid var(--brass-soft);
+        outline-offset: 4px;
+      }
+
+      body.disclaimer-locked {
+        overflow: hidden;
+      }
+
+      @media (max-width: 640px) {
+        .disclaimer-overlay {
+          padding: 16px;
+        }
+
+        .disclaimer-dialog {
+          max-height: 90vh;
+        }
+
+        .disclaimer-actions {
+          justify-content: stretch;
+        }
+
+        .disclaimer-actions button {
+          flex: 1 1 100%;
+        }
+      }
+    </style>
   </head>
-  <body>
+  <body class="disclaimer-locked">
+    <div
+      class="disclaimer-overlay"
+      id="disclaimer-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="disclaimer-title"
+    >
+      <section class="disclaimer-dialog">
+        <p class="section-label">Website Access Notice</p>
+        <h2 id="disclaimer-title">Disclaimer &amp; Confirmation</h2>
+        <p>
+          Under the rules of the Bar Council of India, Lawbridge Partners (the "Firm")
+          is prohibited from soliciting work or advertising. By clicking "I Agree"
+          below, the user acknowledges that:
+        </p>
+        <ol>
+          <li>There has been no advertisement, personal communication, solicitation, invitation, or inducement of any sort whatsoever from the Firm or any of its members to solicit any work or advertise through this website.</li>
+          <li>The purpose of this website is only to provide information about the Firm, its practice areas, its lawyers, and its professional services.</li>
+          <li>The user wishes to gain more information about the Firm for his/her own information and personal or professional use.</li>
+          <li>The information about the Firm is provided only on the user's specific request, and any information obtained or materials downloaded from this website are accessed completely at the user's own volition.</li>
+          <li>Accessing, receiving, or using this website does not create any lawyer-client relationship between the user and the Firm.</li>
+          <li>This website is not intended to be a source of advertising or solicitation, and its contents should not be construed as legal advice in any manner whatsoever.</li>
+          <li>The Firm is not liable for any consequence of any action taken by the user relying on material or information provided on this website. Where legal assistance is required, the user must seek independent legal advice.</li>
+          <li>The content of this website is the intellectual property of the Firm.</li>
+        </ol>
+        <div class="disclaimer-actions" aria-label="Disclaimer confirmation actions">
+          <button class="disclaimer-disagree-button" type="button" id="disclaimer-disagree-button">I Disagree</button>
+          <button class="disclaimer-agree-button" type="button" id="disclaimer-agree-button">I Agree</button>
+        </div>
+      </section>
+    </div>
     <header class="site-header" aria-label="Primary navigation">
       <a class="brand-link" href="#top" aria-label="Lawbridge Partners home">
         <img src="assets/lawbridge-logo-header.png" alt="Lawbridge Partners" class="brand-logo">
@@ -418,6 +564,51 @@
       </section>
     </main>
     <script>
+      const disclaimerStorageKey = "lawbridge-disclaimer-accepted";
+      const disclaimerOverlay = document.querySelector("#disclaimer-overlay");
+      const disclaimerAgreeButton = document.querySelector("#disclaimer-agree-button");
+      const disclaimerDisagreeButton = document.querySelector("#disclaimer-disagree-button");
+
+      // Reads whether the visitor has already accepted the entry disclaimer.
+      const hasAcceptedDisclaimer = () => {
+        try {
+          return window.localStorage.getItem(disclaimerStorageKey) === "true";
+        } catch {
+          return false;
+        }
+      };
+
+      // Stores the visitor's disclaimer confirmation when browser storage is available.
+      const saveDisclaimerAcceptance = () => {
+        try {
+          window.localStorage.setItem(disclaimerStorageKey, "true");
+        } catch {
+          // The overlay still closes for this visit if storage is blocked.
+        }
+      };
+
+      // Unlocks the homepage after disclaimer confirmation or prior acceptance.
+      const unlockDisclaimerOverlay = () => {
+        document.body.classList.remove("disclaimer-locked");
+
+        if (disclaimerOverlay) {
+          disclaimerOverlay.hidden = true;
+        }
+      };
+
+      if (hasAcceptedDisclaimer()) {
+        unlockDisclaimerOverlay();
+      }
+
+      disclaimerAgreeButton?.addEventListener("click", () => {
+        saveDisclaimerAcceptance();
+        unlockDisclaimerOverlay();
+      });
+
+      disclaimerDisagreeButton?.addEventListener("click", () => {
+        window.location.href = "https://www.google.com";
+      });
+
       const partnerCards = document.querySelectorAll(".partner-card");
 
       partnerCards.forEach((selectedPartnerCard) => {
