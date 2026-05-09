@@ -33,6 +33,7 @@ homepage
   practice areas
     compact core service groups
   partners
+    silhouetted partner-led representation band
     founding partner profile cards by department
   contact section
     Prayagraj, Lucknow, and Delhi addresses
@@ -134,4 +135,6 @@ correction pass
 - [x] Header logo rebuilt as a rounded frosted-glass badge using the transparent source logo.
 - [x] Partner profiles changed to expandable profile previews pending final partner photos/content.
 - [x] Contact details changed to expandable city/contact cards.
+- [x] Four-partner corridor image added as a dark silhouette trust band.
+- [x] Hero image transition softened and chamber-led CTAs restored.
 - [ ] Homepage changes committed and pushed.
