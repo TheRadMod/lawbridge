@@ -156,3 +156,4 @@ correction pass
 - [x] Partner portrait assets normalized to a consistent crop, including the latest Devaang portrait generated from the new reference photo.
 - [x] Office city controls revised into a compact side-by-side selector with the active address opening across the full row below.
 - [x] Header nav label changed to `Team` and the header logo wordmark shifted slightly lower for more breathing room.
+- [x] Hero and forum copy revised to position Lawbridge as Uttar Pradesh-based while also signaling Supreme Court and High Court practice beyond Uttar Pradesh.
