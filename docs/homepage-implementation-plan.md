@@ -144,3 +144,4 @@ correction pass
 - [x] Partner direct contact cards now include practice area, phone link, and partner-specific email link while preserving the general chambers email as first intake.
 - [x] Partner direct contact layout widened to two desktop columns so long phone/email links remain readable.
 - [x] Team page hierarchy revised with partners as the leadership band and associates/supporting roles grouped below.
+- [x] Forums section redesigned as a compact court-and-tribunal matrix with smaller glyph badges and one-line forum descriptions.
