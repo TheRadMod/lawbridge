@@ -138,3 +138,9 @@ correction pass
 - [x] Four-partner corridor image added as a dark silhouette trust band.
 - [x] Hero image transition softened and chamber-led CTAs restored.
 - [x] Homepage changes committed and pushed.
+- [x] Removed the `When to Contact Us` homepage section and expanded the forums section with inline SVG forum glyphs.
+- [x] Removed the Associate Chambers section from the team page and cleared the homepage dead link.
+- [x] Contact Chambers hierarchy updated to show email first, partner direct lines second, and collapsible office addresses last.
+- [x] Partner direct contact cards now include practice area, phone link, and partner-specific email link while preserving the general chambers email as first intake.
+- [x] Partner direct contact layout widened to two desktop columns so long phone/email links remain readable.
+- [x] Team page hierarchy revised with partners as the leadership band and associates/supporting roles grouped below.
