@@ -71,8 +71,8 @@ a:focus-visible {
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 28px;
-  min-height: 88px;
-  padding: 6px 56px 4px;
+  min-height: 96px;
+  padding: 8px 56px 6px;
   border-bottom: 1px solid rgba(200, 162, 75, 0.22);
   background: rgba(8, 23, 41, 0.96);
   box-shadow: 0 12px 30px rgba(8, 23, 41, 0.18);
@@ -83,18 +83,32 @@ a:focus-visible {
   position: relative;
   z-index: 2;
   display: inline-flex;
+  justify-content: center;
   align-items: center;
-  min-height: 78px;
+  width: 138px;
+  height: 138px;
+  min-height: 138px;
+  margin: 8px 0 -54px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.42)),
+    rgba(255, 255, 255, 0.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.78),
+    0 22px 40px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
 }
 
 .brand-logo {
   display: block;
-  width: 118px;
-  height: 118px;
-  margin: -8px 0 -30px;
+  width: 116px;
+  height: 116px;
+  margin: 0;
   object-fit: contain;
   object-position: center;
-  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.26));
+  filter: drop-shadow(0 10px 12px rgba(8, 23, 41, 0.22));
 }
 
 .site-navigation {
@@ -168,8 +182,8 @@ a:focus-visible {
   isolation: isolate;
   display: grid;
   align-items: center;
-  min-height: calc(100svh - 190px);
-  padding: 94px 58px 82px;
+  min-height: calc(100svh - 150px);
+  padding: 82px 58px 78px;
   overflow: hidden;
   background: var(--legal-blue-deep);
 }
@@ -185,8 +199,8 @@ a:focus-visible {
 .hero-section::before {
   z-index: -2;
   background:
-    linear-gradient(90deg, rgba(8, 23, 41, 0.96) 0%, rgba(8, 23, 41, 0.86) 34%, rgba(8, 23, 41, 0.24) 66%, rgba(8, 23, 41, 0.06) 100%),
-    linear-gradient(180deg, rgba(8, 23, 41, 0.26), rgba(8, 23, 41, 0.62));
+    linear-gradient(90deg, rgba(8, 23, 41, 0.98) 0%, rgba(8, 23, 41, 0.9) 32%, rgba(8, 23, 41, 0.4) 68%, rgba(8, 23, 41, 0.16) 100%),
+    linear-gradient(180deg, rgba(8, 23, 41, 0.28), rgba(8, 23, 41, 0.74));
 }
 
 .hero-section::after {
@@ -198,13 +212,13 @@ a:focus-visible {
 
 .hero-image {
   position: absolute;
-  inset: 0 0 0 33%;
+  inset: 0 0 0 25%;
   z-index: -3;
-  width: 67%;
+  width: 75%;
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: center;
+  object-position: right center;
   opacity: 0.95;
 }
 
@@ -263,7 +277,7 @@ h3 {
 h1 {
   margin-bottom: 26px;
   color: var(--white);
-  font-size: 4.75rem;
+  font-size: 5.55rem;
   overflow-wrap: break-word;
 }
 
@@ -529,10 +543,69 @@ h1 {
   gap: 18px;
 }
 
-.partners-list article {
+.partner-card {
   border: 1px solid rgba(17, 25, 35, 0.12);
   background: var(--paper);
   box-shadow: 0 18px 44px rgba(17, 25, 35, 0.08);
+}
+
+.partner-card summary,
+.contact-card summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.partner-card summary::-webkit-details-marker,
+.contact-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.partner-card summary {
+  display: grid;
+}
+
+.partner-summary {
+  display: grid;
+  gap: 8px;
+  padding: 18px 22px 22px;
+}
+
+.partner-summary span {
+  color: var(--maroon);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.partner-summary strong {
+  color: var(--legal-blue);
+  font-family: var(--serif);
+  font-size: 1.74rem;
+  line-height: 1;
+}
+
+.partner-card summary::after,
+.contact-card summary::after {
+  content: "+";
+  color: var(--brass);
+  font-family: var(--sans);
+  font-weight: 900;
+}
+
+.partner-card summary::after {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+}
+
+.partner-card[open] summary::after,
+.contact-card[open] summary::after {
+  content: "-";
+}
+
+.partner-card summary {
+  position: relative;
 }
 
 .partner-monogram {
@@ -549,7 +622,7 @@ h1 {
 }
 
 .partner-copy {
-  padding: 22px 22px 24px;
+  padding: 0 22px 24px;
 }
 
 .partner-copy span {
@@ -569,11 +642,15 @@ h1 {
 }
 
 .partner-copy p {
-  min-height: 112px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   color: var(--muted-text);
   font-size: 0.94rem;
   line-height: 1.6;
+}
+
+.partner-detail {
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
 }
 
 .partner-copy a {
@@ -712,34 +789,28 @@ h1 {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   border: 1px solid var(--dark-line);
 }
 
-.contact-grid div {
+.contact-card {
   display: grid;
   align-content: start;
   gap: 8px;
-  min-height: 160px;
+  min-height: 82px;
   padding: 24px;
   border-right: 1px solid var(--dark-line);
 }
 
-.contact-grid div:nth-child(-n+3) {
-  grid-column: span 2;
-  border-bottom: 1px solid var(--dark-line);
-}
-
-.contact-grid div:nth-child(3),
-.contact-grid div:last-child {
+.contact-card:last-child {
   border-right: 0;
 }
 
-.contact-grid div:nth-child(n+4) {
-  grid-column: span 3;
-}
-
-.contact-grid span {
+.contact-card summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
   color: var(--brass-soft);
   font-size: 0.74rem;
   font-weight: 900;
@@ -754,13 +825,18 @@ h1 {
   overflow-wrap: anywhere;
 }
 
+.contact-card p:first-of-type,
+.contact-card a:first-of-type {
+  margin-top: 14px;
+}
+
 .contact-grid a:hover {
   color: var(--brass-soft);
 }
 
 @media (min-width: 1300px) {
   h1 {
-    font-size: 5.45rem;
+    font-size: 6.35rem;
   }
 
   .hero-lede {
@@ -837,7 +913,7 @@ h1 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .contact-grid div {
+  .contact-card {
     grid-column: auto;
   }
 
@@ -849,11 +925,11 @@ h1 {
     grid-column: span 2;
   }
 
-  .contact-grid div:nth-child(2) {
+  .contact-card:nth-child(2) {
     border-right: 0;
   }
 
-  .contact-grid div:last-child {
+  .contact-card:last-child {
     grid-column: span 2;
     border-top: 1px solid var(--dark-line);
   }
@@ -879,13 +955,17 @@ h1 {
 
   .brand-link {
     justify-content: center;
-    min-height: 54px;
+    width: 112px;
+    height: 112px;
+    min-height: 112px;
+    margin: 0 auto 8px;
+    border-radius: 20px;
   }
 
   .brand-logo {
-    width: 94px;
-    height: 94px;
-    margin: -2px 0 -10px;
+    width: 96px;
+    height: 96px;
+    margin: 0;
   }
 
   .site-navigation {
@@ -996,7 +1076,7 @@ h1 {
   .practice-card,
   .practice-card-wide,
   .process-list article:last-child,
-  .contact-grid div:last-child {
+  .contact-card:last-child {
     grid-column: auto;
   }
 
@@ -1009,14 +1089,14 @@ h1 {
     min-height: auto;
   }
 
-  .contact-grid div,
-  .contact-grid div:nth-child(2),
-  .contact-grid div:last-child {
+  .contact-card,
+  .contact-card:nth-child(2),
+  .contact-card:last-child {
     border-right: 0;
     border-top: 1px solid var(--dark-line);
   }
 
-  .contact-grid div:first-child {
+  .contact-card:first-child {
     border-top: 0;
   }
 }

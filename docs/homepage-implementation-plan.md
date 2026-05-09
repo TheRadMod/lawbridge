@@ -7,8 +7,8 @@ Create the first public website page for Lawbridge Partners with a professional 
 ## Brand Rules
 
 - Use "Lawbridge" as one word.
-- Use `logo-effects/lawbridge_logo_glass-frosted-cropped.png` as the homepage header logo; preserve the original frosted source and do not rearrange the bridge, laurel, wordmark, or tagline.
-- Use `assets/hero-lawbridge-court.png` as the homepage court-institutional hero image while preserving the original generated source image.
+- Use `lawbridge_logo.png` inside a CSS frosted-glass badge for the homepage header logo; preserve the bridge, laurel, wordmark, and tagline.
+- Use `assets/allahabad-high-court-hero.png` as the homepage court-institutional hero image while preserving the supplied source image.
 - Keep the top navigation visible while scrolling.
 - Keep the visual language serious, institutional, and court-facing.
 
@@ -44,9 +44,8 @@ homepage
 ```text
 conversion pass
   logo
-    create cropped frosted asset from the original square render
-    remove outer blank margin while keeping the glass rectangle and immediate shadow
-    use the cropped asset in the sticky header
+    place the transparent source logo inside a rounded CSS frosted-glass badge
+    keep the badge large and slightly overlapping the dark masthead
     keep alt text as Lawbridge Partners
   header
     enlarge logo as a square/near-square glass mark
@@ -105,10 +104,10 @@ correction pass
   partners
     profile-card treatment
     initials placeholders only
-    inert View Profile anchors
+    expandable profile previews
   contact
     dark structured chambers block
-    Prayagraj chambers and Lucknow presence only
+    expandable city/contact cards
   accessibility
     focus-visible styles
     reduced-motion override
@@ -124,11 +123,15 @@ correction pass
 - [x] Static homepage created.
 - [x] Browser rendering verified.
 - [x] Consolidated review correction pass applied.
-- [x] Hero asset copied to `assets/hero-lawbridge-court.png` without modifying the generated source image.
+- [x] Earlier generated hero asset preserved at `assets/hero-lawbridge-court.png`.
 - [x] Sticky overflow bug addressed by keeping overflow containment off `html` and `body`.
 - [x] Lightweight static verification complete.
-- [x] Cropped logo asset created at `logo-effects/lawbridge_logo_glass-frosted-cropped.png`.
-- [x] Header updated to use the cropped frosted logo asset with larger intentional placement.
+- [x] Earlier cropped frosted logo asset preserved at `logo-effects/lawbridge_logo_glass-frosted-cropped.png`.
+- [x] Header updated to use the transparent source logo inside a CSS frosted-glass badge.
 - [x] Prospective-client decision, contact-situation, intake-process, and document-checklist sections added.
 - [x] Contact section updated with Prayagraj, Lucknow, and Delhi addresses while omitting landline numbers.
+- [x] Allahabad High Court frontage processed into `assets/allahabad-high-court-hero.png`.
+- [x] Header logo rebuilt as a rounded frosted-glass badge using the transparent source logo.
+- [x] Partner profiles changed to expandable profile previews pending final partner photos/content.
+- [x] Contact details changed to expandable city/contact cards.
 - [ ] Homepage changes committed and pushed.
