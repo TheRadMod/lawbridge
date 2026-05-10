@@ -159,3 +159,4 @@ correction pass
 - [x] Hero and forum copy revised to position Lawbridge as Uttar Pradesh-based while also signaling Supreme Court and High Court practice beyond Uttar Pradesh.
 - [x] Team page updated with Associate Chambers and Associate Firms as separate relationship sections below the internal team hierarchy.
 - [x] Team page layout compacted with Clerks under Associates and relationship sections in a two-column row.
+- [x] Mobile header converted from stacked navigation links into a compact logo-plus-menu disclosure.
