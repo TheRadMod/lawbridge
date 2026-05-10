@@ -157,3 +157,5 @@ correction pass
 - [x] Office city controls revised into a compact side-by-side selector with the active address opening across the full row below.
 - [x] Header nav label changed to `Team` and the header logo wordmark shifted slightly lower for more breathing room.
 - [x] Hero and forum copy revised to position Lawbridge as Uttar Pradesh-based while also signaling Supreme Court and High Court practice beyond Uttar Pradesh.
+- [x] Team page updated with Associate Chambers and Associate Firms as separate relationship sections below the internal team hierarchy.
+- [x] Team page layout compacted with Clerks under Associates and relationship sections in a two-column row.
